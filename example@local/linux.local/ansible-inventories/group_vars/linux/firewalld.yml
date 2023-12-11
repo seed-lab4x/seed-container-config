@@ -1,0 +1,17 @@
+# code: language=ansible
+
+firewalld:
+  # list of ansible.posix.firewalld
+  args:
+    - service: https
+      permanent: true
+      state: enabled
+
+  # reload firewalld, optional, default 'true'
+  reload: true
+
+  # list of ansible.builtin.command
+  commands:
+    - firewall-cmd --permanent --zone=trusted --change-interface=ens192
+    - firewall-cmd --permanent --zone=public --add-service docker
+    - firewall-cmd --reload

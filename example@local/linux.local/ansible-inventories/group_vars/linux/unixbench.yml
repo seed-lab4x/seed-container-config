@@ -1,0 +1,20 @@
+# code: language=ansible
+
+unixbench:
+  # it can only be 'script' or 'source', optional, default 'script'
+  mode: script
+
+  # script download url, optional for 'script' mode, default as follows
+  url: https://github.com/teddysun/across/raw/master/unixbench.sh
+
+  # source repository version, optional for 'source' mode, default as follows
+  version: v5.1.3
+
+  # source repository url, optional for 'source' mode, default as follows
+  repository: https://github.com/kdlucas/byte-unixbench.git
+
+  # fetch result to control node, optional, default none
+  output: "{{ inventory_dir }}/../unixbench"
+
+  # print result to stdout, optional, default 'true'
+  print: true

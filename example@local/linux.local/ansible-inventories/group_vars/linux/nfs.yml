@@ -1,0 +1,27 @@
+# code: language=ansible
+
+nfs:
+  server:
+    # vars of mrlesmithjr.nfs-server will be read from file, other override vars will be ignored
+    # vars_file: "{{ inventory_dir }}/../nfs/server/vars.yml"
+
+    # overriding vars as following
+
+    # vars overrided for mrlesmithjr.nfs-server nfs_server_rpcmountdopts
+    rpcmountdopts:
+      - --manage-gids
+      - --no-nfs-version 4
+
+    # vars overrided for mrlesmithjr.nfs-server nfs_server_exports
+    exports:
+      # /data  *(fsid=0,rw,no_root_squash,no_subtree_check,insecure)
+      - access:
+          - hostname: '*'
+            options:
+              - 'fsid=0'
+              - 'rw'
+              - 'no_root_squash'
+              - 'no_subtree_check'
+              - 'insecure'
+        mode: "u=rwx,g=rwx,o=rwx"
+        path: '/data'

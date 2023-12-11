@@ -1,0 +1,11 @@
+# code: language=ansible
+
+ufw:
+  # list of community.general.ufw
+  args:
+    - state: enabled
+      policy: allow
+
+  # list of ansible.builtin.command
+  commands:
+    - ufw status

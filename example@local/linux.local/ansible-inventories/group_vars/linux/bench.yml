@@ -1,0 +1,11 @@
+# code: language=ansible
+
+bench:
+  # script download url, optional, default 'https://bench.sh'
+  url: https://bench.sh
+
+  # fetch result to control node, optional, default none
+  output: "{{ inventory_dir }}/../bench"
+
+  # print result to stdout, optional, default 'true'
+  print: true

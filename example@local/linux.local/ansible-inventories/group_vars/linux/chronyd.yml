@@ -1,0 +1,22 @@
+# code: language=ansible
+
+chronyd:
+  conf:
+    # one of 'lineinfile' or 'cp', required, default 'none' will skip
+    mode: 'cp'
+
+    # list of ansible.builtin.lineinfile
+    lineinfile:
+      - regexp: '^pool'
+        line: pool pool.ntp.org iburst maxsources 3
+        # cannot changed, always as follows
+        # path: /etc/chrony.conf
+        # backup: true
+        # create: true
+
+    # list of ansible.builtin.copy
+    cp:
+      - src: "{{ inventory_dir }}/../chronyd/chronyd.conf"
+        # cannot changed, always as follows
+        # dest: /etc/chrony.conf
+        # backup: true

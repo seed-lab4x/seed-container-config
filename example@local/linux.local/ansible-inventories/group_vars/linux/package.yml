@@ -1,0 +1,40 @@
+# code: language=ansible
+
+package:
+  sources:
+    # one of 'sed' 'lineinfile' or 'cp', required, default 'none' will skip
+    mode: 'cp'
+
+    # list of sed command `sed -e '{{ expression }}' -i.bak {{ file }}`
+    sed:
+      - file: /etc/apt/sources.list
+        expression: s@http://.*ubuntu.com@http://mirrors.tuna.tsinghua.edu.cn@g
+
+    # list of ansible.builtin.lineinfile
+    lineinfile:
+      - path: /etc/apt/sources.list
+        regexp: 'http://.*ubuntu.com'
+        line: 'http://mirrors.tuna.tsinghua.edu.cn'
+        # cannot changed, always 'true'
+        # backup: true
+
+    # list of ansible.builtin.copy
+    cp:
+      - dest: /etc/apt/sources.list
+        content: |
+          deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+          deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+          deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+          deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+        # cannot changed, always 'true'
+        # backup: true
+      - dest: /etc/apt/sources.list
+        src: "{{ inventory_dir }}/../package/sources.list"
+        # cannot changed, always 'true'
+        # backup: true
+
+  # list of name, see ansible.builtin.package name
+  packages:
+    - rsync
+    - ntpdate
+    - chrony

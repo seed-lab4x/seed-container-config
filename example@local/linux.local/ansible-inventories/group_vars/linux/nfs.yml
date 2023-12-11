@@ -25,3 +25,21 @@ nfs:
               - 'insecure'
         mode: "u=rwx,g=rwx,o=rwx"
         path: '/data'
+
+  client:
+    # vars of mrlesmithjr.nfs-client will be read from file, other override vars will be ignored
+    # vars_file: "{{ inventory_dir }}/../nfs/client/vars.yml"
+
+    # overriding vars as following
+
+    # vars overrided for mrlesmithjr.nfs-client nfs_client_mounts
+    mounts:
+      - fstype: nfs
+        opts:
+          - vers=4
+          - loud
+          - rw
+          - sync
+        path: /mnt/nfs/data
+        src: localhost:/
+        state: mounted

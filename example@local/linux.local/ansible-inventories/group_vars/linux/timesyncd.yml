@@ -1,0 +1,22 @@
+# code: language=ansible
+
+timesyncd:
+  conf:
+    # one of 'lineinfile' or 'cp', required, default 'none' will skip
+    mode: 'cp'
+
+    # list of ansible.builtin.lineinfile
+    lineinfile:
+      - regexp: '^#NTP='
+        line: NTP=pool.ntp.org
+        # cannot changed, always as follows
+        # path: /etc/systemd/timesyncd.conf
+        # backup: true
+        # create: true
+
+    # list of ansible.builtin.copy
+    cp:
+      - src: "{{ inventory_dir }}/../timesyncd/timesyncd.conf"
+        # cannot changed, always as follows
+        # dest: /etc/systemd/timesyncd.conf
+        # backup: true

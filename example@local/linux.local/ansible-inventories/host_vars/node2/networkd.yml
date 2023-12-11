@@ -1,0 +1,26 @@
+# code: language=ansible
+
+networkd:
+  # vars of stackhpc.systemd_networkd will be read from file, other override vars will be ignored
+  # vars_file: "{{ inventory_dir }}/../networkd/vars.yml"
+
+  # overriding vars as following
+
+  # will also be enabled systemd_networkd_apply_config systemd_networkd_cleanup
+  # vars overrided for stackhpc.systemd_networkd systemd_networkd_network
+  network:
+    ens192:
+      - Match:
+        - Name: "ens192"
+      - Network:
+        - DHCP: "no"
+        - Gateway: "192.168.1.1"
+        - Address: "192.168.1.202/24"
+        - DNS: "192.168.1.1"
+        - Domains: "lan"
+
+  # vars overrided for stackhpc.systemd_networkd systemd_networkd_netdev
+  # netdev:
+
+  # vars overrided for stackhpc.systemd_networkd systemd_networkd_link
+  # link:

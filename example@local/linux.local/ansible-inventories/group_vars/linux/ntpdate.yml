@@ -1,0 +1,5 @@
+# code: language=ansible
+
+ntpdate:
+  # ntp server for sync, optional, default '0.pool.ntp.org'
+  server: 0.pool.ntp.org

@@ -1,0 +1,22 @@
+# code: language=ansible
+
+netplan:
+  # vars of mrlesmithjr.netplan will be read from file, other override vars will be ignored
+  # vars_file: "{{ inventory_dir }}/../netplan/vars.yml"
+
+  # overriding vars as following
+
+  # vars overrided for stackhpc.systemd_networkd netplan_configuration.network
+  network:
+    version: 2
+    ethernets:
+      ens192:
+        addresses:
+          - 192.168.1.201/24
+        routes:
+          - to: default
+            via: 192.168.1.2
+        nameservers:
+          addresses:
+          - 192.168.1.2
+          search: []

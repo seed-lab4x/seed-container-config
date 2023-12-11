@@ -1,0 +1,22 @@
+# code: language=ansible
+
+ntpd:
+  conf:
+    # one of 'lineinfile' or 'cp', required, default 'none' will skip
+    mode: 'cp'
+
+    # list of ansible.builtin.lineinfile
+    lineinfile:
+      - regexp: '^pool 0'
+        line: pool 0.ubuntu.pool.ntp.org iburst
+        # cannot changed, always as follows
+        # path: /etc/ntp.conf
+        # backup: true
+        # create: true
+
+    # list of ansible.builtin.copy
+    cp:
+      - src: "{{ inventory_dir }}/../ntpd/ntp.conf"
+        # cannot changed, always as follows
+        # dest: /etc/ntp.conf
+        # backup: true

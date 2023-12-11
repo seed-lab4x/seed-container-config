@@ -1,0 +1,8 @@
+# code: language=ansible
+
+pip:
+  # upgrade pip itself, optional, default 'true'
+  upgrade: true
+
+  # index-url, required
+  mirror: https://pypi.tuna.tsinghua.edu.cn/simple

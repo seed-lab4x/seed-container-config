@@ -1,0 +1,21 @@
+# code: language=ansible
+
+docker:
+  # vars of mrlesmithjr.docker will be read from file, other override vars will be ignored
+  # vars_file: "{{ inventory_dir }}/../docker/vars.yml"
+
+  # overriding vars as following
+
+  # vars overrided for mrlesmithjr.docker docker_users
+  # will also be enabled docker_manage_users
+  users:
+    - ubuntu
+
+  # vars overrided for mrlesmithjr.docker docker_images
+  # will also be enabled docker_manage_images
+  images: []
+
+  # vars overrided for mrlesmithjr.docker docker_opts
+  # will also be enabled docker_config_service
+  opts:
+    debug: false

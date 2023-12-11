@@ -19,3 +19,38 @@ docker:
   # will also be enabled docker_config_service
   opts:
     debug: false
+
+  swarm:
+    # vars of mrlesmithjr.ansible-docker-swarm will be read from file, other override vars will be ignored
+    # vars_file: "{{ inventory_dir }}/../docker/swarm/vars.yml"
+
+    # overriding vars as following
+
+    group:
+      # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_managers_ansible_group
+      manager: docker-manager
+
+      # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_workers_ansible_group
+      worker: docker-worker
+
+    # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_interface
+    interface: ens192
+
+    # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_port
+    port: 2377
+
+    # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_networks
+    # will also be enabled docker_swarm_config_networks
+    networks: []
+
+    # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_dispatcher_heartbeat_duration
+    # will also be enabled docker_swarm_config_settings
+    # dispatcher_heartbeat_interval: 10
+
+    # vars overrided for mrlesmithjr.ansible-docker-swarm docker_swarm_cert_expiry
+    # will also be enabled docker_swarm_config_settings
+    # cert_expiry: 24h
+
+    # vars overrided for mrlesmithjr.docker docker_swarm_task_history_limit
+    # will also be enabled docker_swarm_config_settings
+    # task_history_limit: 10
